@@ -1,0 +1,92 @@
+import numpy as np
+from sklearn import preprocessing
+
+path=r'C:\Users\flychen\Desktop\00_pred.txt'
+path_final=r'C:\Users\flychen\Desktop\00_final.txt'
+
+
+# seq = 0
+#
+# row1_dic={}
+# row1 = []
+# row2=[]
+# row3=[]
+row_final=[]
+row_final_final=[]
+
+
+def read_file(t):
+    row1 = []
+    row2 = []
+    row3 = []
+    list_z=[]
+    list_x=[]
+    with open(path,'r') as f:
+
+
+
+
+        for line in f:
+
+
+
+          row2.append(line.split(' ')[t:t+1])
+
+
+          row1.append(line.split(' ')[t:t+1])
+
+
+
+
+        for i in row1:
+
+            z=float("".join([str(x)for x in i]))
+
+
+            if z>0:
+                list_z.append(z)
+            else:
+                list_x.append(z)
+            list_z.sort(reverse=True)
+            list_x.sort(reverse=True)
+            list=list_z+list_x
+        # print(list)
+        # dif=float("".join([str(x)for x in list[-1]]))-float("".join([str(x)for x in list[0]]))
+        #
+        # min=float("".join([str(x)for x in list[0]]))
+        dif=list[0]-list[-1]
+        min=list[-1]
+
+        for j in row2:
+
+                final=((float("".join([str(x)for x in j]))-min)/dif)
+
+                row3.append(final)
+        row_final_final.append(row3)
+    return row_final_final
+
+
+
+for j in range(12):
+    # if j==11:
+        read_file(j)
+
+
+with open(path_final, "w") as file:
+    for m in range(1000):
+        file.write(str(row_final_final[0][m])+' '+str(row_final_final[1][m])+' '+str(row_final_final[2][m])+' '+str(row_final_final[3][m])+' '+str(row_final_final[4][m])+' '+str(row_final_final[5][m])+' '+\
+                   str(row_final_final[6][m])+' '+str(row_final_final[7][m])+' '+str(row_final_final[8][m])+' '+\
+                   str(row_final_final[9][m])+' '+str(row_final_final[10][m])+' '+str(row_final_final[11][m])+'\n')
+
+
+
+
+
+
+
+
+
+
+
+
+
